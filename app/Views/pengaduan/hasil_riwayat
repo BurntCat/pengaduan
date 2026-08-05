@@ -1,0 +1,34 @@
+<h2>Riwayat Pengaduan untuk: "<?= esc($keyword) ?>"</h2>
+
+<?php if(empty($riwayat)): ?>
+    <p>Tidak ada riwayat pengaduan ditemukan dengan data tersebut.</p>
+<?php else: ?>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Nomor Tiket</th>
+                <th>Tanggal</th>
+                <th>Kategori</th>
+                <th>Status Terakhir</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($riwayat as $r): ?>
+            <tr>
+                <td><?= $r['nomor_tiket'] ?></td>
+                <td><?= date('d M Y H:i', strtotime($r['created_at'])) ?></td>
+                <td><?= $r['kategori_id'] ?></td> <!-- Atau joinkan nama kategori jika ada -->
+                <td><?= strtoupper($r['status_akhir']) ?></td>
+                <td>
+                    <!-- Mengarahkan kembali ke halaman status tiket yang sudah ada -->
+                    <a href="/pengaduan/status/<?= $r['nomor_tiket'] ?>">Lihat Detail & SLA</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
+
+<br>
+<a href="/pengaduan/riwayat">Cari dengan data lain</a>

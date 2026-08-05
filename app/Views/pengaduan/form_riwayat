@@ -1,0 +1,12 @@
+<h2>Cek Riwayat Pengaduan Anda</h2>
+<p>Masukkan Email atau Nomor HP yang terdaftar saat mengirim pengaduan.</p>
+
+<?php if(session()->getFlashdata('error')): ?>
+    <p style="color: red;"><?= session()->getFlashdata('error') ?></p>
+<?php endif; ?>
+
+<form action="/pengaduan/riwayat" method="POST">
+    <label>Email / Nomor HP:</label>
+    <input type="text" name="keyword" required placeholder="Contoh: 08123456789 atau email@domain.com">
+    <button type="submit">Cari Riwayat</button>
+</form>
